@@ -1,5 +1,5 @@
 <?php
-
+    //connect to database
     $servername = "localhost";
     $username = "root";
     $password = "";
@@ -40,7 +40,6 @@
     //check if price is valid
     $price = (int)$_POST['price'];
     if (!is_int($price)){
-        echo $price;
         $upload_ok = 0;
     }
 
