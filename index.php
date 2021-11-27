@@ -16,7 +16,9 @@
         while($row = $result -> fetch_assoc()){
             if($x < 3){
                 $x++;
-                echo '<td><br><img src ="' .$row['image']. ' alt = ' .$row['item_id']. '">';
+                $url = '/images/'.$row['image'];
+                $url = str_replace(" ", "%20", $url);
+                echo "<br><img src=.$url.>";
                 echo '<header>' .$row['name']. '</header>';
                 echo '<p>' .$row['description']. '</p>';
                 echo '<p>' .$row['price'].  '</p>';
