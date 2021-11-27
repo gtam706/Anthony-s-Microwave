@@ -31,7 +31,7 @@
 
     //check if image is valid
     $file_type = $_FILES['image']['type'];
-    if($file_type != "image/jpg" && $file_type != "image/png"){
+    if($file_type != "image/jpg" && $file_type != "image/png" && $file_type != "image/jpeg"){
         $upload_ok = 0;
     } else {
         $file_name = $_FILES['image']['name'];
