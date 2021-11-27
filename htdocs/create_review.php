@@ -15,7 +15,7 @@
 
     //check if valid review
     $review = $_POST['review'];
-    if (is_string($description)){
+    if (is_string($review)){
         $review = str_replace("'", "''", $review);
     } else {
         $upload_ok = 0;
