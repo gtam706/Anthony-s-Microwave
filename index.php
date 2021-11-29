@@ -18,8 +18,10 @@
                 $x++;
                 $url = '/images/'.$row['image'];
                 $url = str_replace(" ", "%20", $url);
-                echo "<td><img src=.$url.>";
-                echo '<header>' .$row['name']. '</header>';
+                $item_page = "item_page.php?item_id=".$row['item_id'];
+                echo "<td><a href = $item_page>
+                      <img src=.$url>";
+                echo '<header>' .$row['name']. '</header><a>';
                 echo '<p>' .$row['description']. '</p>';
                 echo '<p>' .$row['price'].  '</p>';
                 echo '</td>';
