@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
 <h1 style="text-align:center">Anthony's Microwave</h1>
+<p><a href="/listings_test.html">Create listing</a></p>
+<p><a href="/user_test.html">Create user</a></p>
+<p><a href="/pass_test.html">Change password</a></p>
+<h1 style="text-align:center">Listings</h1>
 <?php
         $servername = "localhost";
         $username = "root";
@@ -18,10 +22,8 @@
                 $x++;
                 $url = '/images/'.$row['image'];
                 $url = str_replace(" ", "%20", $url);
-                $item_page = "item_page.php?item_id=".$row['item_id'];
-                echo "<td><a href = $item_page>
-                      <img src=.$url>";
-                echo '<header>' .$row['name']. '</header><a>';
+                echo "<br><img src=.$url>";
+                echo '<header>' .$row['name']. '</header>';
                 echo '<p>' .$row['description']. '</p>';
                 echo '<p>' .$row['price'].  '</p>';
                 echo '</td>';
@@ -29,7 +31,6 @@
             else{
                 echo '</tr>';
                 echo '<tr>';
-                $x = 0;
             }
         }
         echo '</table>';
