@@ -20,7 +20,7 @@
                 $url = str_replace(" ", "%20", $url);
                 $item_page = "item_page.php?item_id=".$row['item_id'];
                 echo "<br><a href = $item_page>
-                      <img src=.$url.>";
+                      <img src=.$url>";
                 echo '<header>' .$row['name']. '</header><a>';
                 echo '<p>' .$row['description']. '</p>';
                 echo '<p>' .$row['price'].  '</p>';
