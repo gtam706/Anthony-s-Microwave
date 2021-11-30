@@ -5,13 +5,52 @@
     padding: 20px;
     border: 5px;
     margin: 50px;
-    float: left;
+    /* float: left; */
+    background-color: gray;
+    /* text-align: left; */
+}
+/* Gray box class for the links */
+.grayboxLinks {
+    height: 15px;
+    width: 150px;
+    padding: 20px;
+    border: 5px;
+    margin: 10px;
+    /* float: left; */
+    background-color: gray;
+    color: rgb(15, 15, 15);
     /* text-align: left; */
 }
 
-/* Image class for changing size; TO DO: need to implement this, currently just inline styling */
-.images {
+/* Box class for the "Anthony's Microwave" headers at the top */
+.anthonybox {
+    text-align:center;
     height: 20px;
-    width: 20px;
-    float: right;
+    width: 100%;
+    padding: 20px;
+    border: 5px;
+    margin: 50px;
+    background-color: #910000;
+    color: white;
+}
+
+/* Image class for changing size; TO DO (----FIXED----): need to implement this, currently just inline styling */
+.images {
+    height: 350px;
+    width: 350px;
+    padding: 0.5px;
+    border: 100px;
+    margin: 50px;
+    border: 2.5px solid grey;
+    /* float: center; */
+}
+.imagestxt {
+    height: 200px;
+    width: 310px;
+    padding: 20px;
+    border: 100px;
+    margin: 50px;
+    border: 2.5px solid grey;
+    background-color: #a1a1a1;
+    /* float: center; */
 }
