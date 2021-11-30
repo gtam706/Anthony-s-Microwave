@@ -1,0 +1,20 @@
+<html>
+    <body>
+        <div>
+            <!-- Test html file to work with create_user.php -->
+
+            <form action="/create_user.php" 
+             method="post" enctype="multipart/form-data">
+                <label for="name"> Full Name:</label>
+                <input type="text" id="name" name="name"><br><br>
+                <label for="user_pass">Password:</label>
+                <input type="password" id="user_pass" name="user_pass"><br><br>
+                <label for="pass_conf">Confirm Password:</label>
+                <input type="password" id="pass_conf" name="pass_conf"><br><br>
+                <label for="image">Profile picture:</label>
+                <input type="file" id="image" name="image"><br><br> 
+                <input type="submit" value="Create Account">
+            </form>
+       </div>
+    </body>
+</html>

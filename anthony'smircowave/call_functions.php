@@ -31,10 +31,10 @@
     //echo $row['name'];
 
     //pull user using user id
-    $id = 0; //replace 0 with actual id
-    $sql = "SELECT * FROM users WHERE item_id = $id";
-    $result = $db -> query($sql);
-    $row = $result -> fetch_assoc();
+    // $id = 0; //replace 0 with actual id
+    // $sql = "SELECT * FROM users WHERE item_id = $id";
+    // $result = $db -> query($sql);
+    // $row = $result -> fetch_assoc();
     //example: print name of product
     // echo $row['name'];
 

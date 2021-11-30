@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <link rel="stylesheet" href="styles.css">
+</head>
 <h1 style="text-align:center">Anthony's Microwave</h1>
 <?php
     $servername = "localhost";
@@ -13,14 +16,16 @@
                 
     $result = $db -> query("SELECT * FROM products WHERE item_id = $id");
 
+    //display item informations
     $row = $result -> fetch_assoc();
     $url = '/images/'.$row['image'];
     $url = str_replace(" ", "%20", $url);
     echo "<div><img src=.$url.>";
-    echo '<header>' .$row['name']. '</header>';
-    echo '<p>' .$row['description']. '</p>';
-    echo '<p>' .$row['price'].  '</p> <div>';
+    echo '<header>'.$row['name'].'</header>';
+    echo '<p>'.$row['description'].'</p>';
+    echo '<p>'.$row['price'].'</p> <div>';
 
+    //form to create review
     $review_form = "/anthony'smicrowave/create_review.php";
     echo '<form action='.$review_form.' method="post" enctype="multipart/form-data">';
     echo '<label for="review"> Review:</label>';
