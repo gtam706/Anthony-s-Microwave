@@ -22,7 +22,7 @@
                 $x++;
                 $url = '/images/'.$row['image'];
                 $url = str_replace(" ", "%20", $url);
-                echo "<br><img src=.$url>";
+                echo "<td><img src=.$url>";
                 echo '<header>' .$row['name']. '</header>';
                 echo '<p>' .$row['description']. '</p>';
                 echo '<p>' .$row['price'].  '</p>';
@@ -31,6 +31,7 @@
             else{
                 echo '</tr>';
                 echo '<tr>';
+                $x=0;
             }
         }
         echo '</table>';
