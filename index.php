@@ -16,12 +16,17 @@
         while($row = $result -> fetch_assoc()){
             if($x < 3){
                 $x++;
-                $url = '/images/'.$row['image'];
-                $url = str_replace(" ", "%20", $url);
+                $item_url = '/images/'.$row['image'];
+                $item_url = str_replace(" ", "%20", $item_url);
                 $item_page = "item_page.php?item_id=".$row['item_id'];
+                $seller_id = $row['seller'];
+                $seller_page = "user_page.php?user_id=".$seller_id;
+                $user = $db -> query("SELECT name FROM users WHERE user_id=$seller_id");
+                $user = $user -> fetch_assoc();
                 echo "<td><a href = $item_page>
-                      <img src=.$url>";
-                echo '<header>' .$row['name']. '</header><a>';
+                      <img src=.$item_url>";
+                echo '<header>' .$row['name']. '</header></a>';
+                echo "<p><a href = $seller_page>".$user['name']."</a></p>";
                 echo '<p>' .$row['description']. '</p>';
                 echo '<p>' .$row['price'].  '</p>';
                 echo '</td>';
@@ -35,3 +40,4 @@
         echo '</table>';
 ?>
 </html>
+
