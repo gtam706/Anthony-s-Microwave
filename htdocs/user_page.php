@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +18,18 @@
 
     $id = $_GET['user_id'];
     
+    if ($id != $_SESSION['user']){
+        //form to create review
+        $review_form = "/anthony'smicrowave/create_review.php";
+        echo '<form action='.$review_form.' method="post" enctype="multipart/form-data">';
+        echo '<label for="review"> Review:</label>';
+        echo '<input type="text" id="review" name="review"><br><br>';
+        echo '<input type="hidden" id="reviewer" name="reviewer" value="'.$_SESSION['user'].'"/>';
+        echo '<input type="hidden" id="reviewee" name="reviewee" value="'.$id.'"/>';
+        echo '<input type="submit" value="Submit"></form>';
+    } else { ?>
+        <p class="grayboxLinks" style="text-align: center;"><a href="/anthony'smicrowave/listings_test.html">Create Listing</a></p>
+    <?php }
 
     //display all item listings created by user
     $item = $db -> query("SELECT * FROM products WHERE seller = $id");

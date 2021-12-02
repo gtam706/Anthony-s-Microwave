@@ -1,0 +1,20 @@
+<html>
+    <body>
+        <div>
+            <!-- Test html file to work with create_user.php -->
+
+            <form action="/change_password.php" 
+             method="post" enctype="multipart/form-data">
+                <label for="user_id">account id:</label>
+                <input type="number" pattern="\d+" id="user_id" name="user_id"><br><br> 
+                <label for="old_pass"> Old Password:</label>
+                <input type="password" id="old_pass" name="old_pass"><br><br>
+                <label for="new_pass">New Password:</label>
+                <input type="password" id="new_pass" name="new_pass"><br><br>
+                <label for="new_pass_conf">Confirm New Password:</label>
+                <input type="password" id="new_pass_conf" name="new_pass_conf"><br><br>
+                <input type="submit" value="Change Password">
+            </form>
+       </div>
+    </body>
+</html>

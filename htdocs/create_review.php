@@ -21,15 +21,13 @@
         $upload_ok = 0;
     }
 
-    //temporary test function
-    //TO DO: implement function to automatically pull user id
+    //checks for valid input
     $reviewer = (int)$_POST['reviewer'];
     if (!is_int($reviewer)){
         $upload_ok = 0;
     }
 
-    //temporary test function
-    //TO DO: implement function to automatically pull seller id
+    //checks for valid input
     $reviewee = (int)$_POST['reviewee'];
     if (!is_int($reviewee)){
         $upload_ok = 0;
@@ -47,6 +45,4 @@
     } else {
         echo "Review creation failed";
     }
-
-
 ?>

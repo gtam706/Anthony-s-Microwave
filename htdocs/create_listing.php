@@ -1,4 +1,6 @@
 <?php
+    session_start();
+
     //connect to database
     $servername = "localhost";
     $username = "root";
@@ -57,7 +59,7 @@
         $db -> query($sql);
         
         //TO DO: get seller id from page 
-        $seller = $_POST['seller'];
+        $seller = $_SESSION['user'];
 
         //create image
         if (!file_exists('images')) {
@@ -74,7 +76,7 @@
         if ($db->query($sql) === TRUE) {
             echo "New record created successfully";
         } else {
-            echo "Error: " . $sql . "<br>" . db->error;
+            echo "Error: " . $sql . "<br>" . $db->error;
         }
     } else {
         echo "Error: invalid input";

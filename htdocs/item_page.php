@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,21 +22,25 @@
 
     //display item informations
     $row = $result -> fetch_assoc();
-    $url = '/images/'.$row['image'];
-    $url = str_replace(" ", "%20", $url);
-    echo "<div><img src=.$url.>";
+    $item_url = '/images/'.$row['image'];
+    $item_url = str_replace(" ", "%20", $item_url);
+    echo "<div><img src=.$item_url.>";
     echo '<header>'.$row['name'].'</header>';
+    
+    //link to sellers user page
+    $seller_id = $row['seller'];
+    $seller_page = "user_page.php?user_id=".$seller_id;
+    $user = $db -> query("SELECT name FROM users WHERE user_id=$seller_id");
+    $user = $user -> fetch_assoc();
+    echo "<p><a href = $seller_page>".$user['name']."</a></p>";
+
     echo '<p>'.$row['description'].'</p>';
     echo '<p>'.$row['price'].'</p> <div>';
 
-    //form to create review
-    $review_form = "/anthony'smicrowave/create_review.php";
-    echo '<form action='.$review_form.' method="post" enctype="multipart/form-data">';
-    echo '<label for="review"> Review:</label>';
-    echo '<input type="text" id="review" name="review"><br><br>';
-    echo '<label for="reviewer ">reviewer:</label>';
-    echo '<input type="number" id="reviewer" name="reviewer"><br><br>';
-    echo '<input type="hidden" id="reviewee" name="reviewee" value="'.$row['seller'].'"/>';
-    echo '<input type="submit" value="Submit"></form>';
+    //message seller
+    $message = "/anthony'smicrowave/message.php";
+    echo '<form action='.$message.' method="post" enctype="multipart/form-data">';
+    echo '<input type="hidden" id="recipient" name="recipient" value="'.$row['seller'].'"/>';
+    echo '<input type="hidden" id="sender" name="sender" value="'.$_SESSION['user'].'"/>';
 ?>
 </html>
