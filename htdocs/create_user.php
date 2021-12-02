@@ -61,7 +61,7 @@
   
         if ($db->query($sql) === TRUE) {
             echo "New record created successfully";
-            $sql = "SELECT 'name' FROM `users` WHERE `name`=$name";
+            $sql = "SELECT user_id FROM users WHERE name= '$name'";
             $result = $db -> query($sql);
             $row = $result -> fetch_assoc();
             $_SESSION['user'] = $row['user_id'];
