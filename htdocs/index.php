@@ -12,7 +12,12 @@ session_start();
 if (!isset($_SESSION['user'])){ ?>
     <p class="grayboxLinks" style="text-align: center;"><a href="/anthony'smicrowave/user_test.html">Create user</a></p>
     <p class="grayboxLinks" style="text-align: center;"><a href="/anthony'smicrowave/login.html">Login</a></p>
-<?php } else { ?>
+<?php } else { 
+    $class = '"grayboxLinks"';
+    $style = '"text-align: center;"';
+    $link = "user_page.php?user_id=".$_SESSION['user'];
+    echo "<p class=".$class." style=".$style."><a href=".$link.">User Page</a></p>";
+    ?>
     <p class="grayboxLinks" style="text-align: center;"><a href="/anthony'smicrowave/listings_test.html">Create listing</a></p>
     <p class="grayboxLinks" style="text-align: center;"><a href="/anthony'smicrowave/pass_test.html">Change password</a></p>
     <p class="grayboxLinks" style="text-align: center;"><a href="/anthony'smicrowave/logout.php">Log Out</a></p>
@@ -62,7 +67,7 @@ if (!isset($_SESSION['user'])){ ?>
                 padding: 5px;
                 border: 10px;
                 margin: 50px;'>";
-                echo '<p>' .$row['price'].  '</p>';
+                echo '<p>  $' .$row['price'].  '</p>';
                 echo '<br>';
                 echo '</td>';
             }

@@ -29,8 +29,19 @@ session_start();
         echo '<input type="submit" value="Submit"></form>';
     } else { ?>
         <p class="grayboxLinks" style="text-align: center;"><a href="/anthony'smicrowave/listings_test.html">Create Listing</a></p>
-    <?php }
+    <?php 
+        echo '<h1 style="text-align:left">Messages</h1>';
+        $recipient = $_SESSION['user'];
+        $result = $db -> query("SELECT * FROM messages WHERE recipient='$recipient'");
+        while($row = $result -> fetch_assoc()){
+            $seller_page = "user_page.php?user_id=".$row['sender'];
+            echo "<h3><a href = $seller_page>".$row['sender']."</a></h3>";
+            echo '<p>'.$row['message']. '</p><br>';
+        }
+    }
 
+
+    echo '<h1 style="text-align:left">Listings</h1>';
     //display all item listings created by user
     $item = $db -> query("SELECT * FROM products WHERE seller = $id");
     $x = 0;
@@ -40,9 +51,9 @@ session_start();
         $item_page = "item_page.php?item_id=".$row['item_id'];
         echo "<a href = $item_page>
                 <img src=.$url>";
-        echo '<header>' .$row['name']. '</header><a>';
+        echo '<h3>' .$row['name']. '</h3><a>';
         echo '<p>' .$row['description']. '</p>';
-        echo '<p>' .$row['price'].  '</p>';
+        echo '<p> $' .$row['price'].  '</p>';
     }
 
     echo "<div>";

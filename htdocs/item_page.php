@@ -35,12 +35,19 @@ session_start();
     echo "<p><a href = $seller_page>".$user['name']."</a></p>";
 
     echo '<p>'.$row['description'].'</p>';
-    echo '<p>'.$row['price'].'</p> <div>';
+    echo '<p> $'.$row['price'].'</p> <div>';
 
     //message seller
+    $id = $_SESSION['user'];
+    $result = $db -> query("SELECT name FROM users WHERE user_id='$id'");
+    $buyer_name = $result -> fetch_assoc();
     $message = "/anthony'smicrowave/message.php";
-    echo '<form action='.$message.' method="post" enctype="multipart/form-data">';
+    echo '<form action='.$message.' method="post" enctype="multipart/form-data">';    
+    $contents = $buyer_name['name']." is interested in purchasing ".$row['name'];
+    echo '<input type="hidden" id="message" name="message" value="'.$contents.'"/>';
     echo '<input type="hidden" id="recipient" name="recipient" value="'.$row['seller'].'"/>';
     echo '<input type="hidden" id="sender" name="sender" value="'.$_SESSION['user'].'"/>';
+    echo '<input type="submit" value="Buy"></form>';
+
 ?>
 </html>
