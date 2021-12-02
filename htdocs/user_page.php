@@ -7,7 +7,8 @@ session_start();
 <head>
     <link rel="stylesheet" href="styles.css">
 </head>
-<h1 style="text-align:center">Anthony's Microwave</h1>
+<a href = "/anthony'smicrowave/index.php">
+<h1 style="text-align:center">Anthony's Microwave</h1></a>
 <?php
     $servername = "localhost";
     $username = "root";
@@ -18,28 +19,42 @@ session_start();
 
     $id = $_GET['user_id'];
     
-    if ($id != $_SESSION['user']){
-        //form to create review
-        $review_form = "/anthony'smicrowave/create_review.php";
-        echo '<form action='.$review_form.' method="post" enctype="multipart/form-data">';
-        echo '<label for="review"> Review:</label>';
-        echo '<input type="text" id="review" name="review"><br><br>';
-        echo '<input type="hidden" id="reviewer" name="reviewer" value="'.$_SESSION['user'].'"/>';
-        echo '<input type="hidden" id="reviewee" name="reviewee" value="'.$id.'"/>';
-        echo '<input type="submit" value="Submit"></form>';
-    } else { ?>
-        <p class="grayboxLinks" style="text-align: center;"><a href="/anthony'smicrowave/listings_test.html">Create Listing</a></p>
-    <?php 
-        echo '<h1 style="text-align:left">Messages</h1>';
-        $recipient = $_SESSION['user'];
-        $result = $db -> query("SELECT * FROM messages WHERE recipient='$recipient'");
-        while($row = $result -> fetch_assoc()){
-            $seller_page = "user_page.php?user_id=".$row['sender'];
-            echo "<h3><a href = $seller_page>".$row['sender']."</a></h3>";
-            echo '<p>'.$row['message']. '</p><br>';
+    //if looking at someone elses user page, give option to leave reviews
+    if (isset($_SESSION['user'])){
+        if ($id != $_SESSION['user']){
+                //form to create review
+                $review_form = "/anthony'smicrowave/create_review.php";
+                echo '<form action='.$review_form.' method="post" enctype="multipart/form-data">';
+                echo '<label for="review"> Review:</label>';
+                echo '<input type="text" id="review" name="review"><br><br>';
+                echo '<input type="hidden" id="reviewer" name="reviewer" value="'.$_SESSION['user'].'"/>';
+                echo '<input type="hidden" id="reviewee" name="reviewee" value="'.$id.'"/>';
+                echo '<input type="submit" value="Submit"></form>';
+            //if looking at own user page, give option to create listing and view messages
+            } else { ?>
+                <p class="grayboxLinks" style="text-align: center;"><a href="/anthony'smicrowave/listings_test.html">Create Listing</a></p>
+            <?php 
+                echo '<h1 style="text-align:left">Messages</h1>';
+                $recipient = $_SESSION['user'];
+                $result = $db -> query("SELECT * FROM messages WHERE recipient='$recipient'");
+                while($row = $result -> fetch_assoc()){
+                    $seller_page = "user_page.php?user_id=".$row['sender'];
+                    echo "<h3><a href = $seller_page>".$row['sender']."</a></h3>";
+                    echo '<p>'.$row['message']. '</p>';
+                    
+                    //create option to reply to messages
+                    $message = "/anthony'smicrowave/message.php";
+                    echo '<form action='.$message.' method="post" enctype="multipart/form-data">';    
+                    echo '<label for="message"> Reply:</label>';
+                    echo '<input type="text" id="message" name="message"><br>';            
+                    echo '<input type="hidden" id="recipient" name="recipient" value="'.$row['seller'].'"/>';
+                    echo '<input type="hidden" id="sender" name="sender" value="'.$_SESSION['user'].'"/>';
+                    echo '<input type="submit" value="Buy"></form><br>';
+                }
+            }
+        } else {
+            echo "Must be logged in to use these features";
         }
-    }
-
 
     echo '<h1 style="text-align:left">Listings</h1>';
     //display all item listings created by user

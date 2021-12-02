@@ -39,6 +39,7 @@
         ('$reviewer', '$reviewee', '$review')";
         if ($db->query($sql) === TRUE) {
             echo "New record created successfully";
+            header("Location: http://localhost/anthony'smicrowave/index.php");
         } else {
             echo "Error: " . $sql . "<br>" . $db->error;
         }

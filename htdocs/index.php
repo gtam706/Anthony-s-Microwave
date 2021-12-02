@@ -9,10 +9,13 @@ session_start();
 <h1 class="anthonybox">Anthony's Microwave</h1>
 <!-- Implements the graybox classes in external CSS -->
 <?php
+//if user is not logged in, displays options to log in or create a new account
 if (!isset($_SESSION['user'])){ ?>
     <p class="grayboxLinks" style="text-align: center;"><a href="/anthony'smicrowave/user_test.html">Create user</a></p>
     <p class="grayboxLinks" style="text-align: center;"><a href="/anthony'smicrowave/login.html">Login</a></p>
 <?php } else { 
+    //if user is logged in, displays option to go to own user page,
+    //create listing, change password, and log out
     $class = '"grayboxLinks"';
     $style = '"text-align: center;"';
     $link = "user_page.php?user_id=".$_SESSION['user'];
@@ -55,18 +58,10 @@ if (!isset($_SESSION['user'])){ ?>
                 $user = $user -> fetch_assoc();
 
                 //display information
-                echo "<td><a href = $item_page>
-                      <img src=.$item_url>";
-                echo "<header style='text-align: center; font-size: 40px'>" .$row['name']. '</header>';
+                echo "<td><a href = $item_page><img src=.$item_url width = '200'>";
+                echo "<header style='text-align: left; font-size: 40px'>" .$row['name']. '</header>';
                 echo "<p><a href = $seller_page>".$user['name']."</a></p>";
                 echo '<p>' .$row['description']. '</p>';
-                echo "<p style='font-size: 20px;
-                text-align: left;
-                height: 15px;
-                width: 50px;
-                padding: 5px;
-                border: 10px;
-                margin: 50px;'>";
                 echo '<p>  $' .$row['price'].  '</p>';
                 echo '<br>';
                 echo '</td>';

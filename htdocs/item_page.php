@@ -7,7 +7,8 @@ session_start();
 <head>
     <link rel="stylesheet" href="styles.css">
 </head>
-<h1 style="text-align:center">Anthony's Microwave</h1>
+<a href = "/anthony'smicrowave/index.php">
+<h1 style="text-align:center">Anthony's Microwave</h1></a>
 <?php
     $servername = "localhost";
     $username = "root";
@@ -24,7 +25,7 @@ session_start();
     $row = $result -> fetch_assoc();
     $item_url = '/images/'.$row['image'];
     $item_url = str_replace(" ", "%20", $item_url);
-    echo "<div><img src=.$item_url.>";
+    echo "<div><img src=.$item_url width = '400'>";
     echo '<header>'.$row['name'].'</header>';
     
     //link to sellers user page
@@ -37,17 +38,21 @@ session_start();
     echo '<p>'.$row['description'].'</p>';
     echo '<p> $'.$row['price'].'</p> <div>';
 
-    //message seller
-    $id = $_SESSION['user'];
-    $result = $db -> query("SELECT name FROM users WHERE user_id='$id'");
-    $buyer_name = $result -> fetch_assoc();
-    $message = "/anthony'smicrowave/message.php";
-    echo '<form action='.$message.' method="post" enctype="multipart/form-data">';    
-    $contents = $buyer_name['name']." is interested in purchasing ".$row['name'];
-    echo '<input type="hidden" id="message" name="message" value="'.$contents.'"/>';
-    echo '<input type="hidden" id="recipient" name="recipient" value="'.$row['seller'].'"/>';
-    echo '<input type="hidden" id="sender" name="sender" value="'.$_SESSION['user'].'"/>';
-    echo '<input type="submit" value="Buy"></form>';
+    //message seller if logged in
+    if (isset($_SESSION['user'])){
+        $id = $_SESSION['user'];
+        $result = $db -> query("SELECT name FROM users WHERE user_id='$id'");
+        $buyer_name = $result -> fetch_assoc();
+        $message = "/anthony'smicrowave/message.php";
+        echo '<form action='.$message.' method="post" enctype="multipart/form-data">';    
+        $contents = $buyer_name['name']." is interested in purchasing ".$row['name'];
+        echo '<input type="hidden" id="message" name="message" value="'.$contents.'"/>';
+        echo '<input type="hidden" id="recipient" name="recipient" value="'.$row['seller'].'"/>';
+        echo '<input type="hidden" id="sender" name="sender" value="'.$_SESSION['user'].'"/>';
+        echo '<input type="submit" value="Buy"></form>';
+    } else {
+        echo "<p> Must be logged in to purchase </p>";
+    }
 
 ?>
 </html>
