@@ -35,9 +35,23 @@ if (!isset($_SESSION['user'])){ ?>
         $dbname = "Anthony'sMicrowave";
                 
         $db = new mysqli($servername, $username, $password, $dbname);
+
+        //search bar
+        echo '<form action="" method="get">';    
+        echo '<input type="search" id="search" name="search" placeholder="Search...">';
+        echo '<input type="submit" value="Search..."></form>';
                   
-        //create table of all listings in database
-        $result = $db -> query("SELECT * FROM products");
+        if (empty($_GET)){
+            //create table of all listings in database
+            $result = $db -> query("SELECT * FROM products");
+        } else {
+            //create results based on search
+            $search  = $_GET['search'];
+            $search = '%'.$search.'%';
+            $result = $db -> query("SELECT * FROM products WHERE name LIKE '$search'");
+        }
+
+
         $x = 0;
         echo '<table>';
         echo '<tr>';
