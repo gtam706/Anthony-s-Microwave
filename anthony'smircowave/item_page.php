@@ -3,7 +3,7 @@
 <head>
     <link rel="stylesheet" href="styles.css">
 </head>
-<h1 style="text-align:center">Anthony's Microwave</h1>
+<h1 class="anthonybox">Anthony's Microwave</h1>
 <?php
     $servername = "localhost";
     $username = "root";
@@ -20,10 +20,22 @@
     $row = $result -> fetch_assoc();
     $url = '/images/'.$row['image'];
     $url = str_replace(" ", "%20", $url);
-    echo "<div><img src=.$url.>";
-    echo '<header>'.$row['name'].'</header>';
-    echo '<p>'.$row['description'].'</p>';
-    echo '<p>'.$row['price'].'</p> <div>';
+    //Inline styling for the whole block, making gray background
+    echo "<div style= 'display: block;
+    border: 2.5px solid grey;
+    background-color: #a1a1a1;
+    height: 845px;
+    width: auto;
+    // Uncomment if you want a different layout, stuff on right, picture on left
+    // display: flex;
+    // justify-content: center;
+    '>";
+    //Inline styling for the image, just to center it
+    echo "<img src=.$url. class = 'div images'>";
+   
+    echo "<header style='text-align: center; font-size: 40px'>".$row['name'].'</header>';
+    echo '<p style = "text-align: center; font-size: 25px;">'.$row['description'].'</p>';
+    echo '<p style = "font-size: 45px; color: white; text-align:center;">',"$".$row['price'].'</p> <div>';
 
     //form to create review
     $review_form = "/anthony'smicrowave/create_review.php";
