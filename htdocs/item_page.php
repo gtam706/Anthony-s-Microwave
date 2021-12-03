@@ -5,10 +5,10 @@ session_start();
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="stylesheet.css">
 </head>
 <a href = "/anthony'smicrowave/index.php">
-<h1 style="text-align:center">Anthony's Microwave</h1></a>
+<h1 class = "anthonybox">Anthony's Microwave</h1></a>
 <?php
     $servername = "localhost";
     $username = "root";
@@ -25,8 +25,25 @@ session_start();
     $row = $result -> fetch_assoc();
     $item_url = '/images/'.$row['image'];
     $item_url = str_replace(" ", "%20", $item_url);
-    echo "<div><img src=.$item_url width = '400'>";
-    echo '<header>'.$row['name'].'</header>';
+    // echo "<div><img src=.$item_url width = '400'>";
+    // echo '<header>'.$row['name'].'</header>';
+
+    //Inline styling for the whole block, making gray background
+    echo "<div style= 'display: block;
+    border: 2.5px solid grey;
+    background-color: #a1a1a1;
+    height: 845px;
+    width: auto;
+    // Uncomment if you want a different layout, stuff on right, picture on left
+    // display: flex;
+    // justify-content: center;
+    '>";
+    //Inline styling for the image, just to center it
+    echo "<img src=.$item_url class = 'div images'>";
+
+    echo "<header style='text-align: center; font-size: 40px'>".$row['name'].'</header>';
+    echo '<p style = "text-align: center; font-size: 25px;">'.$row['description'].'</p>';
+    echo '<p style = "font-size: 45px; color: white; text-align:center;">',"$".$row['price'].'</p> <div>';
     
     //link to sellers user page
     $seller_id = $row['seller'];

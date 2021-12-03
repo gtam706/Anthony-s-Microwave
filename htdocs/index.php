@@ -4,8 +4,9 @@ session_start();
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="stylesheet.css">
 </head>
+<body class="bg">
 <h1 class="anthonybox">Anthony's Microwave</h1>
 <!-- Implements the graybox classes in external CSS -->
 <?php
@@ -27,7 +28,7 @@ if (!isset($_SESSION['user'])){ ?>
 <?php } ?>
 
 <!-- <p class="grayboxLinks" style="text-align: center;"><a href="/pass_test.html">User Page</a></p> -->
-<h1 style="text-align:center">Listings</h1>
+<h1 style="text-align:center; font-size: 45px">Listings</h1>
 <?php
         $servername = "localhost";
         $username = "root";
@@ -72,13 +73,16 @@ if (!isset($_SESSION['user'])){ ?>
                 $user = $user -> fetch_assoc();
 
                 //display information
-                echo "<td><a href = $item_page><img src=.$item_url width = '200'>";
-                echo "<header style='text-align: left; font-size: 40px'>" .$row['name']. '</header>';
-                echo "<p><a href = $seller_page>".$user['name']."</a></p>";
-                echo '<p>' .$row['description']. '</p>';
-                echo '<p>  $' .$row['price'].  '</p>';
-                echo '<br>';
-                echo '</td>';
+                echo "<td>";
+                //Divider styling for the cells
+                echo "<div class='cellDiv'>";
+                echo "<a href = $item_page>
+                      <img src=.$item_url class='images'>";
+                echo "<header style='text-align: center; font-size: 40px'>" .$row['name']. '</header>';
+                echo "<p style = 'text-align: center; font-size: 25px;'><a href = $seller_page>".$user['name']."</a></p>";
+                //Styling for the description under the images
+                echo '<p class="imagestxt">' .$row['description'].'<br>';
+                echo "Price: $".$row['price'].'</p></div>';
             }
             else{
                 echo '</tr>';
@@ -88,4 +92,5 @@ if (!isset($_SESSION['user'])){ ?>
         }
         echo '</table>';
 ?>
+</body>
 </html>

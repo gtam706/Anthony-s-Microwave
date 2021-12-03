@@ -1,19 +1,34 @@
 <html>
+    <head>
+        <a href = "/anthony'smicrowave/index.php">
+        <link rel="stylesheet" href="stylesheet.css">
+        <h1 class="anthonybox">Anthony's Microwave</h1></a>
+    </head>
     <body>
-        <div>
+            <!-- Inline styling for the whole block, making gray background -->
+            <div style= "display: block;
+            border: 2.5px solid grey;
+            background-color: #a1a1a1;
+            height: 845px;
+            width: auto;
+            display: flex;
+            justify-content: center;
+            ">
             <!-- Test html file to work with create_listing.php -->
 
             <form action="/anthony'smicrowave/create_listing.php" 
              method="post" enctype="multipart/form-data">
-                <label for="name"> Name of Item:</label>
-                <input type="text" id="name" name="name"><br><br>
-                <label for="description ">Description:</label>
-                <input type="text" id="description" name="description"><br><br>
-                <label for="price">Price:</label>
-                <input type="number" id="price" name="price"><br><br>
-                <label for="image">Image:</label>
-                <input type="file" id="image" name="image"><br><br> 
-                <input type="submit" value="Submit">
+                <label class="labels" for="name"> Name of Item:</label>
+                <input class="labels"type="text" id="name" name="name"><br><br>
+                <label class="labels"for="description ">Description:</label>
+                <input class="labels"type="text" id="description" name="description"><br><br>
+                <label class="labels"for="seller">Seller ID:</label>
+                <input class="labels"type="number" id="seller" name="seller"><br><br>
+                <label class="labels"for="price">Price:</label>
+                <input class="labels"type="number" id="price" name="price"><br><br>
+                <label class="labels"for="image">Image:</label>
+                <input class="labels"type="file" id="image" name="image"><br><br> 
+                <input class="labels"type="submit" value="Submit">
             </form>
        </div>
     </body>

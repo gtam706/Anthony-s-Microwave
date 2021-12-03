@@ -5,10 +5,10 @@ session_start();
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="stylesheet.css">
 </head>
 <a href = "/anthony'smicrowave/index.php">
-<h1 style="text-align:center">Anthony's Microwave</h1></a>
+<h1 class="anthonybox">Anthony's Microwave</h1></a>
 <?php
     $servername = "localhost";
     $username = "root";
@@ -18,6 +18,11 @@ session_start();
     $db = new mysqli($servername, $username, $password, $dbname);
 
     $id = $_GET['user_id'];
+    $result = $db -> query("SELECT name FROM users WHERE user_id='$id'");
+    $name = $result -> fetch_assoc();
+    echo "<header style='margin: 20; text-align:center; font-size:40px'>User: ".$name['name']."</header>";
+
+
     
     //if looking at someone elses user page, give option to leave reviews
     if (isset($_SESSION['user'])){
@@ -34,7 +39,7 @@ session_start();
             } else { ?>
                 <p class="grayboxLinks" style="text-align: center;"><a href="/anthony'smicrowave/listings_test.html">Create Listing</a></p>
             <?php 
-                echo '<h1 style="text-align:left">Messages</h1>';
+                echo "<header style='margin: 20; text-align:left; font-size:30px'> Messages </header>";
                 $recipient = $_SESSION['user'];
                 $result = $db -> query("SELECT * FROM messages WHERE recipient='$recipient'");
                 while($row = $result -> fetch_assoc()){
@@ -55,10 +60,10 @@ session_start();
                 }
             }
         } else {
-            echo "Must be logged in to use these features";
+            echo "<header style='margin: 20; text-align:left; font-size:20px'> Must be logged in to use these features </header>";
         }
 
-    echo '<h1 style="text-align:left">Listings</h1>';
+    echo "<header style='margin: 20; text-align:left; font-size:30px'> Listings </header>";
     //display all item listings created by user
     $item = $db -> query("SELECT * FROM products WHERE seller = $id");
     $x = 0;
@@ -66,6 +71,14 @@ session_start();
         $url = '/images/'.$row['image'];
         $url = str_replace(" ", "%20", $url);
         $item_page = "item_page.php?item_id=".$row['item_id'];
+
+        echo "<div style= 'display: block;
+        border: 2.5px solid grey;
+        background-color: #a1a1a1;
+        height: 845px;
+        width: auto;
+        '>";
+
         echo "<a href = $item_page>
                 <img src=.$url width = '200'>";
         echo '<h3>' .$row['name']. '</h3><a>';
@@ -74,7 +87,7 @@ session_start();
     }
 
     echo "<div>";
-    echo "<header> Reviews </header>";
+    echo "<header style='margin: 100px; text-align:center; font-size:30px'> Reviews </header>";
 
     //display all reviews of user
     $review = $db -> query("SELECT * FROM reviews WHERE reviewee = $id");
