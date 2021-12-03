@@ -1,4 +1,6 @@
 <?php
+    session_start();
+
     //connect to database
     $servername = "localhost";
     $username = "root";
@@ -46,19 +48,18 @@
 
     //if all input is valid
     if ($upload_ok){
-        //get lifetime item count for item id (obsolete) 
-//         $sql = "SELECT item_count FROM count";
-//         $count = $db -> query($sql);
-//         $row = $count -> fetch_object();
-//         $item_id = $row -> item_count;
-        //TODO remove count table from db
+        //get lifetime item count for item id
+        $sql = "SELECT item_count FROM count";
+        $count = $db -> query($sql);
+        $row = $count -> fetch_object();
+        $item_id = $row -> item_count;
         
         //update lifetime item count
         $sql = "UPDATE count SET item_count = item_count + 1";
         $db -> query($sql);
         
         //TO DO: get seller id from page 
-        $seller = $_POST['seller'];
+        $seller = $_SESSION['user'];
 
         //create image
         if (!file_exists('images')) {
@@ -69,13 +70,14 @@
         move_uploaded_file($temp_name, $image_folder);
 
         //insert all values into 'products' table
-        $sql = "INSERT INTO products (name, description, seller, image, price) VALUES 
-           ('$name', '$description', '$seller', '$file_name', '$price')";
+        $sql = "INSERT INTO products VALUES 
+           ('$name', '$description', '$seller', '$file_name', '$price', '$item_id')";
 
         if ($db->query($sql) === TRUE) {
             echo "New record created successfully";
+            header("Location: http://localhost/anthony'smicrowave/index.php");
         } else {
-            echo "Error: " . $sql . "<br>" . db->error;
+            echo "Error: " . $sql . "<br>" . $db->error;
         }
     } else {
         echo "Error: invalid input";

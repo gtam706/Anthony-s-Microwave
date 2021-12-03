@@ -1,4 +1,6 @@
 <?php
+    session_start();
+
     //connect to database
     $servername = "localhost";
     $username = "root";
@@ -53,14 +55,20 @@
         $image_folder = "images/".$file_name;
         move_uploaded_file($temp_name, $image_folder);
      
-        //insert all values into 'products' table
+        //insert all values into 'users' table
         $sql = "INSERT INTO users (name, image, password) VALUES 
            ('$name', '$file_name', '$user_pass')";
   
         if ($db->query($sql) === TRUE) {
             echo "New record created successfully";
+            $sql = "SELECT user_id FROM users WHERE name= '$name'";
+            $result = $db -> query($sql);
+            $row = $result -> fetch_assoc();
+            $_SESSION['user'] = $row['user_id'];
+            header("Location: http://localhost/anthony'smicrowave/index.php");
+            die();
         } else {
-            echo "Error: " . $sql . "<br>" . db->error;
+            echo "Error: " . $sql . "<br>" . $db->error;
         }
 
     } else {

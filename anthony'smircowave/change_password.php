@@ -58,7 +58,7 @@
         if ($db->query($sql) === TRUE) {
             echo "password updated successfully";
         } else {
-            echo "Error: " . $sql . "<br>" . db->error;
+            echo "Error: " . $sql . "<br>" . $db->error;
         }
     } else {
         if ($upload_ok == 1) {

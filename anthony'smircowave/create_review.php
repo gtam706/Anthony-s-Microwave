@@ -21,15 +21,13 @@
         $upload_ok = 0;
     }
 
-    //temporary test function
-    //TO DO: implement function to automatically pull user id
+    //checks for valid input
     $reviewer = (int)$_POST['reviewer'];
     if (!is_int($reviewer)){
         $upload_ok = 0;
     }
 
-    //temporary test function
-    //TO DO: implement function to automatically pull seller id
+    //checks for valid input
     $reviewee = (int)$_POST['reviewee'];
     if (!is_int($reviewee)){
         $upload_ok = 0;
@@ -40,13 +38,13 @@
         $sql = "INSERT INTO reviews VALUES 
         ('$reviewer', '$reviewee', '$review')";
         if ($db->query($sql) === TRUE) {
+            $id = $reviewee;
             echo "New record created successfully";
+            header("Location: http://localhost/anthony'smicrowave/user_page.php?user_id=$id");
         } else {
             echo "Error: " . $sql . "<br>" . $db->error;
         }
     } else {
         echo "Review creation failed";
     }
-
-
 ?>

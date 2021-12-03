@@ -2,8 +2,8 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Nov 29, 2021 at 05:44 AM
+-- Host: 127.0.0.1
+-- Generation Time: Dec 03, 2021 at 11:50 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `Anthony'sMicrowave`
+-- Database: `anthony'smicrowave`
 --
 
 -- --------------------------------------------------------
@@ -41,6 +41,27 @@ INSERT INTO `count` (`item_count`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `messages`
+--
+
+CREATE TABLE `messages` (
+  `recipient` int(11) NOT NULL,
+  `sender` int(11) NOT NULL,
+  `message` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `messages`
+--
+
+INSERT INTO `messages` (`recipient`, `sender`, `message`) VALUES
+(16, 18, 'Ash Ketchum is interested in purchasing TV'),
+(1, 19, 'Demo is interested in purchasing Microwave'),
+(18, 16, 'Great!');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `products`
 --
 
@@ -58,16 +79,16 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`name`, `description`, `seller`, `image`, `price`, `item_id`) VALUES
-('Microwave', 'Used microwave in good condition. Has an output of 900 watts. Comes with a timer and clock feature.', 1, 'microwave.jpg', '50', 0),
-('Frying pan', 'Used non stick frying pan. 5\" radius.', 4, 'frying pan.jpg', '15', 1),
-('Lamp', 'Desk lamp. Never used.', 4, 'lamp.jpg', '25', 2),
-('Mattress topper', 'Used mattress topper. Full size. Good condition', 3, 'mattress topper.jpg', '8', 3),
-('Mini fridge', 'Used mini fridge. 3.3 cubic feet. Good condition, may need to be cleaned.', 6, 'mini fridge.jpg', '100', 4),
-('Monitor', '12 inch monitor', 9, 'monitor.png', '85', 5),
-('Software Development Design and Coding', 'Used Software Development Design and Coding textbook. Good condition, some writing on pages.', 7, 'software development.jpg', '20', 6),
-('Thomas Calculus', 'New Thomas Calculus textbook. ', 23, 'thomas calculus.jpg', '40', 7),
-('TV', '14 inch LED TV', 16, 'tv.jpeg', '175', 8),
-('Vacuum', 'Used vacuum. Still working', 19, 'vacuum 1.jpg', '30', 9),
+('Microwave', 'Used microwave in good condition. Has an output of 900 watts. Comes with a timer and clock feature.', 1, 'microwave.jpg', '50', 1),
+('Frying pan', 'Used non stick frying pan. 5\" radius.', 4, 'frying pan.jpg', '15', 2),
+('Lamp', 'Desk lamp. Never used.', 4, 'lamp.jpg', '25', 3),
+('Mattress topper', 'Used mattress topper. Full size. Good condition', 3, 'mattress topper.jpg', '8', 4),
+('Mini fridge', 'Used mini fridge. 3.3 cubic feet. Good condition, may need to be cleaned.', 6, 'mini fridge.jpg', '100', 5),
+('Monitor', '12 inch monitor', 9, 'monitor.png', '85', 6),
+('Software Development Design and Coding', 'Used Software Development Design and Coding textbook. Good condition, some writing on pages.', 7, 'software development.jpg', '20', 7),
+('Thomas Calculus', 'New Thomas Calculus textbook. ', 18, 'thomas calculus.jpg', '40', 8),
+('TV', '14 inch LED TV', 16, 'tv.jpeg', '175', 9),
+('Vacuum', 'Used vacuum. Still working', 19, 'vacuum 1.jpg', '30', 10),
 ('Vacuum', 'Used vacuum. Still working', 12, 'vacuum 2.jpg', '25', 11);
 
 -- --------------------------------------------------------
@@ -100,8 +121,8 @@ INSERT INTO `reviews` (`reviewer`, `reviewee`, `review`) VALUES
 --
 
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
-  `name` text COLLATE utf8_bin NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `name` text COLLATE utf8_bin DEFAULT NULL,
   `image` text COLLATE utf8_bin NOT NULL,
   `password` text COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -110,9 +131,24 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `image`, `password`) VALUES
+INSERT INTO `users` (`user_id`, `name`, `image`, `password`) VALUES
 (1, 'Anthony Micro', 'external-contentduckduckgocom.jpg', 'gR63YJXjU7dWn2R'),
-(6, 'steve jobs', 'sliced-apple-5.jpg', 'iloveapple');
+(3, 'Jill', 'Screenshot 2021-11-18 104318.png', 'test'),
+(4, 'John', 'Screenshot 2021-11-18 104318.png', 'test'),
+(6, 'steve jobs', 'sliced-apple-5.jpg', 'iloveapple'),
+(7, 'Alex', 'Screenshot 2021-11-18 104318.png', 'test'),
+(8, 'Anne', 'Screenshot 2021-11-18 104318.png', 'test'),
+(9, 'Ben', 'Screenshot 2021-11-18 104318.png', 'test'),
+(10, 'Bary', 'Screenshot 2021-11-18 104318.png', 'test'),
+(12, 'Agent Smith', 'Screenshot 2021-11-18 104318.png', 'test'),
+(14, 'Joe', 'Screenshot 2021-11-18 104318.png', 'test'),
+(15, 'M. Mouse', 'Screenshot 2021-11-18 104318.png', 'cheese'),
+(16, 'Goofy', 'Screenshot 2021-11-18 104318.png', 'dog'),
+(17, 'Sora', 'Screenshot 2021-11-18 104318.png', 'key'),
+(18, 'Ash Ketchum', 'Screenshot 2021-11-18 104318.png', 'poke'),
+(19, 'Demo', 'Screenshot 2021-11-18 104318.png', 'test'),
+(23, 'Jerry', 'Screenshot 2021-11-18 104318.png', 'mouse'),
+(34, 'Tom', 'Screenshot 2021-11-18 104318.png', 'cat');
 
 --
 -- Indexes for dumped tables
@@ -128,17 +164,23 @@ ALTER TABLE `products`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`user_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
