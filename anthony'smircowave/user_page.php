@@ -3,7 +3,7 @@
 <head>
     <link rel="stylesheet" href="styles.css">
 </head>
-<h1 style="text-align:center">Anthony's Microwave</h1>
+<h1 class="anthonybox">Anthony's Microwave</h1>
 <?php
     $servername = "localhost";
     $username = "root";
@@ -22,15 +22,22 @@
         $url = '/images/'.$row['image'];
         $url = str_replace(" ", "%20", $url);
         $item_page = "item_page.php?item_id=".$row['item_id'];
+        echo "<div style= 'display: block;
+        border: 2.5px solid grey;
+        background-color: #a1a1a1;
+        height: 845px;
+        width: auto;
+        '>";
         echo "<a href = $item_page>
-                <img src=.$url>";
-        echo '<header>' .$row['name']. '</header><a>';
-        echo '<p>' .$row['description']. '</p>';
-        echo '<p>' .$row['price'].  '</p>';
+                <img src=.$url class = 'div images'>";
+        echo "<header style='text-align: center; font-size: 40px;'>" .$row['name']. '</header><a>';
+        echo '<p style="text-align: center; font-size: 25px;">' .$row['description']. '</p>';
+        echo '<p style = "font-size: 45px; color: white; text-align:center;">' ,"$".$row['price'].  '</p>';
     }
 
     echo "<div>";
-    echo "<header> Reviews </header>";
+    //Not much styling for now
+    echo "<header style='margin: 100px; text-align:center; font-size:30px'> Reviews </header>";
 
     //display all reviews of user
     $review = $db -> query("SELECT * FROM reviews WHERE reviewee = $id");
