@@ -38,18 +38,20 @@ session_start();
                 $recipient = $_SESSION['user'];
                 $result = $db -> query("SELECT * FROM messages WHERE recipient='$recipient'");
                 while($row = $result -> fetch_assoc()){
+                    $sender_id = $row['sender'];
+                    $sender_name = $db -> query("SELECT * FROM users WHERE user_id='$sender_id'");
+                    $sender_name = $sender_name -> fetch_assoc();
                     $seller_page = "user_page.php?user_id=".$row['sender'];
-                    echo "<h3><a href = $seller_page>".$row['sender']."</a></h3>";
+                    echo "<h3><a href = $seller_page>".$sender_name['name']."</a></h3>";
                     echo '<p>'.$row['message']. '</p>';
                     
                     //create option to reply to messages
                     $message = "/anthony'smicrowave/message.php";
                     echo '<form action='.$message.' method="post" enctype="multipart/form-data">';    
-                    echo '<label for="message"> Reply:</label>';
                     echo '<input type="text" id="message" name="message"><br>';            
-                    echo '<input type="hidden" id="recipient" name="recipient" value="'.$row['seller'].'"/>';
+                    echo '<input type="hidden" id="recipient" name="recipient" value="'.$row['sender'].'"/>';
                     echo '<input type="hidden" id="sender" name="sender" value="'.$_SESSION['user'].'"/>';
-                    echo '<input type="submit" value="Buy"></form><br>';
+                    echo '<input type="submit" value="Reply"></form><br>';
                 }
             }
         } else {
@@ -65,7 +67,7 @@ session_start();
         $url = str_replace(" ", "%20", $url);
         $item_page = "item_page.php?item_id=".$row['item_id'];
         echo "<a href = $item_page>
-                <img src=.$url>";
+                <img src=.$url width = '200'>";
         echo '<h3>' .$row['name']. '</h3><a>';
         echo '<p>' .$row['description']. '</p>';
         echo '<p> $' .$row['price'].  '</p>';
