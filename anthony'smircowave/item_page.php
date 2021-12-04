@@ -52,9 +52,6 @@ session_start();
     $user = $user -> fetch_assoc();
     echo "<p style='font-size:30px'><a href = $seller_page>".$user['name']."</a></p><br>";
 
-    echo '<p styl="font-size:20px">'.$row['description'].'</p><br>';
-    echo '<p> $'.$row['price'].'</p> <div><br>';
-
     //message seller if logged in
     if (isset($_SESSION['user'])){
         $id = $_SESSION['user'];
